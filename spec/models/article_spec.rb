@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
 
   describe "#validations" do
-    let(:article) { FactoryBot.build(:article)}
+    let(:article) { FactoryBot.create(:article)}
 
     it "test the Article object" do
       #article= FactoryBot.build(:article)                       #"build" je isto ko "create", ali ne sejva u bazu, jer nam to još ne treba
-      expect(article.title).to eq("Sample Article Title")
+      expect(article.title).to eq("Sample article 1")
       expect(article).to be_valid                               #provjerava "validates" uvjete iz Artice.rb modela
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Article, type: :model do
     end
 
     it "verifies the uniqueness of the slug" do
-      article2 = FactoryBot.build(:article2)
+      article2 = FactoryBot.build(:article, slug: article.slug)    #ne sejvam ga u bazu pa koristim build, jer mi validation nebi dao sejvat
       expect(article2).not_to be_valid
     end
   end
