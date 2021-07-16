@@ -11,11 +11,12 @@ RSpec.describe ArticlesController do
     it "returns a valid JSON" do
       article= create(:article)    #FactoryBot
       get "/articles"
-      body = JSON.parse(response.body)   #ovo nekak raspakira JSON da je lakše radit s njim
+      body = JSON.parse(response.body).deep_symbolize_keys      #ovo nekak raspakira JSON da je lakše radit s njim. Umjesto u string raspakira ga u hash
+      pp body                                               # sa pp naredbom možemo indentirano printat unutar testa, da vidimo i debugiramo rezultate. p==inspect, pp=pretty_inspect
       expect(body).to eq(
         data:  [
           {
-            id: article.id,
+            id: article.id.to_s,
             type: "articles",
             attributes: {
               title: article.title,
