@@ -23,6 +23,7 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jsonapi-serializer'    #pretvara u json format
 gem 'jsom-pagination', '~> 0.1.3'   #neki custom brzi pagination algoritam
+gem 'octokit', '~> 4.21'          #gem koji omogućava OAuth autorizaciju putem GitHuba
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
