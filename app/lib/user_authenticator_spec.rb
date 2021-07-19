@@ -35,10 +35,15 @@ describe UserAuthenticator do
         expect{authenticator.perform}.to change{ User.count }.by(1)
       end
 
-      it "shoul reuse already registered user" do
+      it "should reuse already registered user" do
         user = create :user, user_data
         expect{authenticator.perform}.not_to change{User.count}
         expect(authenticator.user).to eq(user)
+      end
+
+      it "should create and set user's token" do
+        expect{authenticator.perform}.to change{AccessToken.count}.by(1)
+        expect(authenticator.access_token).to be_present
       end
 
     end
